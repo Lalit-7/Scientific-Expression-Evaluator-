@@ -10,6 +10,8 @@ A browser-based scientific expression evaluator that parses and evaluates mathem
 
 Simply open `index.html` in any modern web browser. No server or build step required.
 
+**🔗 Live Demo:** [https://lalit-7.github.io/Scientific-Expression-Evaluator-/](https://lalit-7.github.io/Scientific-Expression-Evaluator-/)
+
 ## Approach
 
 ### Expression Parsing — Shunting-Yard Algorithm
