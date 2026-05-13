@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SciCalc — Scientific Expression Evaluator</title>
+  <meta name="description" content="A browser-based scientific expression evaluator supporting arithmetic, exponentiation, trigonometric functions, logarithms, and constants." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Grid Background -->
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <!-- Ambient Glow Orbs -->
+  <div class="orb orb-cyan" aria-hidden="true"></div>
+  <div class="orb orb-purple" aria-hidden="true"></div>
+
+  <main class="calculator">
+
+    <!-- Header -->
+    <header class="calc-header">
+      <div class="logo">
+        <span class="logo-icon">⚛</span>
+        <span class="logo-text">SciCalc</span>
+      </div>
+      <p class="subtitle">Scientific Expression Evaluator</p>
+    </header>
+
+    <!-- Scanning Glow Line -->
+    <div class="glow-line" aria-hidden="true"></div>
+
+    <!-- Input Section -->
+    <section class="input-section">
+      <label for="expression-input" class="input-label">Enter Expression</label>
+      <div class="input-wrapper">
+        <input
+          type="text"
+          id="expression-input"
+          class="expression-input"
+          placeholder="e.g. sin(pi/2) + sqrt(16) * 2^3"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button id="evaluate-btn" class="eval-btn" title="Evaluate (Enter)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Result Section -->
+    <section class="result-section" id="result-section">
+      <span class="result-label">Result</span>
+      <div class="result-display">
+        <span class="result-value" id="result-value">—</span>
+        <button class="copy-btn" id="copy-btn" title="Copy result">Copy</button>
+      </div>
+    </section>
+
+    <!-- Error Section -->
+    <section class="error-section hidden" id="error-section">
+      <span class="error-icon">⚠</span>
+      <span class="error-message" id="error-message"></span>
+    </section>
+
+    <!-- Quick Insert Buttons -->
+    <section class="quick-buttons">
+      <p class="section-label">Functions</p>
+      <div class="btn-row">
+        <button class="q-btn fn" data-insert="sin(">sin</button>
+        <button class="q-btn fn" data-insert="cos(">cos</button>
+        <button class="q-btn fn" data-insert="tan(">tan</button>
+        <button class="q-btn fn" data-insert="log(">log</button>
+        <button class="q-btn fn" data-insert="ln(">ln</button>
+        <button class="q-btn fn" data-insert="sqrt(">√</button>
+        <button class="q-btn fn" data-insert="abs(">abs</button>
+      </div>
+      <p class="section-label">Constants & Operators</p>
+      <div class="btn-row">
+        <button class="q-btn const" data-insert="pi">π</button>
+        <button class="q-btn const" data-insert="e">e</button>
+        <button class="q-btn op" data-insert="^">^</button>
+        <button class="q-btn op" data-insert="(">(</button>
+        <button class="q-btn op" data-insert=")">)</button>
+        <button class="q-btn op" data-insert=".">.</button>
+      </div>
+    </section>
+
+    <!-- Supported Operations Info -->
+    <section class="info-section">
+      <details class="info-details">
+        <summary class="info-summary">Supported Operations</summary>
+        <div class="info-content">
+          <div class="info-grid">
+            <div class="info-item"><code>+  -  *  /</code><span>Arithmetic</span></div>
+            <div class="info-item"><code>^</code><span>Exponentiation</span></div>
+            <div class="info-item"><code>( )</code><span>Grouping</span></div>
+            <div class="info-item"><code>sin cos tan</code><span>Trigonometry (radians)</span></div>
+            <div class="info-item"><code>log</code><span>Base-10 logarithm</span></div>
+            <div class="info-item"><code>ln</code><span>Natural logarithm</span></div>
+            <div class="info-item"><code>sqrt</code><span>Square root</span></div>
+            <div class="info-item"><code>abs</code><span>Absolute value</span></div>
+            <div class="info-item"><code>pi  e</code><span>Constants</span></div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <!-- History Section -->
+    <section class="history-section">
+      <div class="history-header">
+        <span class="section-label">History</span>
+        <button id="clear-history" class="clear-btn">Clear</button>
+      </div>
+      <div class="history-list" id="history-list">
+        <div class="history-empty">No calculations yet</div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Built by Lalit</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
